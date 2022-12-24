@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import WallpaperNavigation from "./src/navigations/WallpaperNavigation";
+import { COLORS } from "./src/constants/index";
+import { SafeAreaView } from "react-native-safe-area-context";
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="dark"  />
-    </View>
+    <>
+      <NavigationContainer>
+        <StatusBar
+          style="light"
+          backgroundColor={COLORS.statusbar}
+          color="white"
+        />
+        <WallpaperNavigation />
+      </NavigationContainer>
+      <Text>Show Banner ads here</Text>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // flex: 1,
+    backgroundColor: "pink",
+    // alignItems: "center",
+    // justifyContent: "center",
+    // color: "white",
   },
 });

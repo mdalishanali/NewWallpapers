@@ -3057,6 +3057,11 @@ expo-error-recovery@~4.0.1:
   resolved "https://registry.yarnpkg.com/expo-error-recovery/-/expo-error-recovery-4.0.1.tgz#3e3333e134c992c234539d3773fe78915c883755"
   integrity sha512-wceptnRX+N3qCSVTNbIchUFu3GmY30onRH5L66OF8HMLpAIQfrZMLxJfz7SAMJTcr3jxsJ11vSa2l2RaPKgHsQ==
 
+expo-fast-image@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/expo-fast-image/-/expo-fast-image-1.1.3.tgz#c00a83f365c9c03b585d8198e2da0b6ecb22fc17"
+  integrity sha512-dpHvUFJxImD+yDVJk3ubCMGSYgbewPfbsPMOpD/EP7PKDA4RurtkJZcUDF8T/0gxuxZMCldPgHup6np/hrK/MQ==
+
 expo-file-system@~15.1.0, expo-file-system@~15.1.1:
   version "15.1.1"
   resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-15.1.1.tgz#724090f83ff1e6378cadc0a64b83552f769eb16b"
