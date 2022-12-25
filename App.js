@@ -3,12 +3,10 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import WallpaperNavigation from "./src/navigations/WallpaperNavigation";
 import { COLORS } from "./src/constants/index";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 export default function App() {
   return (
     <>
-      <GestureHandlerRootView>
         <NavigationContainer>
           <StatusBar
             style="light"
@@ -17,7 +15,6 @@ export default function App() {
           />
           <WallpaperNavigation />
         </NavigationContainer>
-      </GestureHandlerRootView>
     </>
   );
 }

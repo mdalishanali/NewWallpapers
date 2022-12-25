@@ -38,7 +38,7 @@ const Details = () => {
         <Text>Details</Text>
         <ExpoFastImage
           uri={img}
-          cacheKey={101245}
+          cacheKey={Math.random()}
           style={{
             width: width - 20,
             height: height - 200,
