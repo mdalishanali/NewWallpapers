@@ -15,7 +15,7 @@ export default function App() {
         />
         <WallpaperNavigation />
       </NavigationContainer>
-      <Text>Show Banner ads here</Text>
+      {/* <Text>Show Banner ads here</Text> */}
     </>
   );
 }

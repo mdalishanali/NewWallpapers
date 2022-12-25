@@ -33,8 +33,8 @@ function WallpaperNavigation() {
       <Stack.Screen
         name="Details"
         component={Details}
-        options={() => ({
-          title: "New Wallpapers",
+        options={({ route }) => ({
+          title: "",
         })}
       />
     </Stack.Navigator>
