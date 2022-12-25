@@ -33,9 +33,7 @@ const ImageCard = ({ item: { id, title, img } }) => {
       }}
     >
       {loading && (
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <ActivityIndicator color="pink" />
-        </View>
+        <ActivityIndicator size="large" style={{ flex: 1 }} color="pink" />
       )}
 
       <TouchableOpacity onPress={() => imageDetails(img)}>

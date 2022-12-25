@@ -4,18 +4,20 @@ import { StyleSheet, Text, View } from "react-native";
 import WallpaperNavigation from "./src/navigations/WallpaperNavigation";
 import { COLORS } from "./src/constants/index";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 export default function App() {
   return (
     <>
-      <NavigationContainer>
-        <StatusBar
-          style="light"
-          backgroundColor={COLORS.statusbar}
-          color="white"
-        />
-        <WallpaperNavigation />
-      </NavigationContainer>
-      {/* <Text>Show Banner ads here</Text> */}
+      <GestureHandlerRootView>
+        <NavigationContainer>
+          <StatusBar
+            style="light"
+            backgroundColor={COLORS.statusbar}
+            color="white"
+          />
+          <WallpaperNavigation />
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </>
   );
 }

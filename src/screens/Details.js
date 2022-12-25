@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Button,
   Dimensions,
   ScrollView,
@@ -33,10 +34,11 @@ const Details = () => {
   return (
     <ScrollView>
       <View>
+        {loading ? <ActivityIndicator /> : null}
         <Text>Details</Text>
         <ExpoFastImage
           uri={img}
-          cacheKey={1}
+          cacheKey={101245}
           style={{
             width: width - 20,
             height: height - 200,
