@@ -11,7 +11,7 @@ import ExpoFastImage from "expo-fast-image";
 import { COLORS } from "./../constants/index";
 import { useNavigation } from "@react-navigation/native";
 const ImageCard = ({ item: { id, title, img } }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { width, height } = Dimensions.get("window");
   const navigation = useNavigation();
 
@@ -30,11 +30,17 @@ const ImageCard = ({ item: { id, title, img } }) => {
         opacity: 1,
         marginHorizontal: 8,
         marginVertical: 15,
+        flex: 1,
+        justifyContent: "center",
       }}
     >
-      {loading && (
-        <ActivityIndicator size="large" style={{ flex: 1 }} color="pink" />
-      )}
+      {loading ? (
+        <ActivityIndicator
+          size="large"
+          style={{ position: "absolute", zIndex: 1, left: 55 }}
+          color="pink"
+        />
+      ) : null}
 
       <TouchableOpacity onPress={() => imageDetails(img)}>
         <ExpoFastImage

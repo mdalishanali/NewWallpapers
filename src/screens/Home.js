@@ -10,6 +10,7 @@ import {
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import ImageCard from "../components/ImageCard";
+import CategoryTab from "../components/CategoryTab";
 
 const Home = () => {
   const navigation = useNavigation();
@@ -81,7 +82,7 @@ const Home = () => {
       img: "https://images.pexels.com/photos/40784/drops-of-water-water-nature-liquid-40784.jpeg?cs=srgb&dl=pexels-pixabay-40784.jpg&fm=jpg",
       title: "lorem",
       id: 189564,
-    }
+    },
   ];
   const { height, width } = Dimensions.get("screen");
   const [data, setData] = useState(imgData);
@@ -89,24 +90,26 @@ const Home = () => {
     // setData([...data, imgData]);
   };
   return (
-    <View style={styles.container}>
-      <FlatList
-        contentContainerStyle={{
-          flexDirection: "column",
-          maxWidth: "100%",
-          justifyContent: "space-between",
-        }}
-        data={data}
-        // style={styles.list}
-        numColumns={2}
-        initialNumToRender={5}
-        onEndReached={fetchMore}
-        renderItem={({ item, index }) => {
-          return <ImageCard key={index} item={item} />;
-        }}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
+    // <Text>alsi</Text>
+    <CategoryTab />
+    // <View style={styles.container}>
+    //   <FlatList
+    //     contentContainerStyle={{
+    //       flexDirection: "column",
+    //       maxWidth: "100%",
+    //       justifyContent: "space-between",
+    //     }}
+    //     data={data}
+    //     // style={styles.list}
+    //     numColumns={2}
+    //     initialNumToRender={5}
+    //     onEndReached={fetchMore}
+    //     renderItem={({ item, index }) => {
+    //       return <ImageCard key={index} item={item} />;
+    //     }}
+    //     keyExtractor={(item) => item.id}
+    //   />
+    // </View>
   );
 };
 
