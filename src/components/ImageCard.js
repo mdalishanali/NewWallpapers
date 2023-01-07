@@ -10,14 +10,16 @@ import React, { useState } from "react";
 import ExpoFastImage from "expo-fast-image";
 import { COLORS } from "./../constants/index";
 import { useNavigation } from "@react-navigation/native";
-const ImageCard = ({ item: { id, title, img } }) => {
+const ImageCard = ({ item }) => {
+  const { id, title, img } = item;
   const [loading, setLoading] = useState(true);
   const { width, height } = Dimensions.get("window");
   const navigation = useNavigation();
 
-  const imageDetails = (img) => {
-    navigation.navigate("Details", { img: img });
+  const imageDetails = () => {
+    navigation.navigate("Details", { item });
   };
+  
   return (
     <View
       style={{

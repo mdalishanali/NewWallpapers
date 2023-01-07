@@ -38,7 +38,8 @@ const Details = () => {
   const { width, height } = Dimensions.get("window");
 
   const route = useRoute();
-  const img = route.params.img;
+  const item = route.params.item;
+  const { img, id } = item;
 
   const setWallpaper = () => {
     try {
@@ -75,7 +76,7 @@ const Details = () => {
           <Text>Details</Text>
           <ExpoFastImage
             uri={img}
-            cacheKey={Math.random()}
+            cacheKey={id}
             style={{
               width: width - 20,
               height: height - 200,
