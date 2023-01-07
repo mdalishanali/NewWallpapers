@@ -33,16 +33,17 @@ import {
   MaterialIcons,
   Octicons,
 } from "@expo/vector-icons";
+import Toast from "react-native-toast-message";
 
 const Details = () => {
   const sheetRef = useRef(null);
   const wallpaperRef = useRef(null);
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [progress, setProgress] = useState(false);
   const snapPoints = ["20%", "30%"];
   const wallpaperPoints = ["40%", "50%"];
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { width, height } = Dimensions.get("window");
 
   const route = useRoute();
@@ -50,16 +51,39 @@ const Details = () => {
   const { img, id } = item;
 
   const setWallpaper = (screen) => {
+    setProgress(true);
+    wallpaperRef.current?.close();
     try {
       WallPaperManager.setWallpaper(
         {
           uri: img,
           screen: screen,
         },
-        (res) => console.log(res)
+        (res) => {
+          setProgress(false);
+          Toast.show({
+            type: "success",
+            position: "top",
+            autoHide: true,
+            visibilityTime: 2000,
+            text1: "Wallpaper Successfully Set!",
+            text2: "Success",
+          });
+        }
       );
     } catch (error) {
-      console.log("error: ", error);
+      setProgress(false);
+      Toast.show({
+        type: "error",
+        position: "top",
+        autoHide: true,
+        visibilityTime: 2000,
+        text1: "Something went wrong",
+        text2: "Error",
+        onShow: () => {
+          wallpaperRef.current?.close();
+        },
+      });
     }
   };
 
@@ -71,16 +95,11 @@ const Details = () => {
     wallpaperRef.current?.present();
   }, []);
 
-  const handleSheetChanges = useCallback((index) => {
-    console.log("handleSheetChanges", index);
-  }, []);
-
   return (
     <View>
       <BottomSheetModalProvider>
         <View>
           {loading ? <ActivityIndicator /> : null}
-          <Text>Details</Text>
           <ExpoFastImage
             uri={img}
             cacheKey={id}
@@ -104,7 +123,6 @@ const Details = () => {
             ref={sheetRef}
             snapPoints={snapPoints}
             index={0}
-            onChange={handleSheetChanges}
             enablePanDownToClose={false}
             backgroundComponent={() => <View style={styles.contentContainer} />}
             handleComponent={() => (
@@ -134,7 +152,7 @@ const Details = () => {
                     alignItems: "center",
                     backgroundColor: "#0e1116",
                     borderRadius: 50,
-                    borderWidth: 5,
+                    borderWidth: 3,
                     borderColor: "white",
                   },
                 ]}
@@ -159,7 +177,11 @@ const Details = () => {
                   },
                 ]}
               >
-                <MaterialIcons name="now-wallpaper" size={30} color="white" />
+                {progress ? (
+                  <ActivityIndicator size="large" color={"white"} />
+                ) : (
+                  <MaterialIcons name="now-wallpaper" size={30} color="white" />
+                )}
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleOpenWallpaperDialog}
@@ -172,27 +194,13 @@ const Details = () => {
                     alignItems: "center",
                     backgroundColor: "#0e1116",
                     borderRadius: 50,
-                    borderWidth: 5,
+                    borderWidth: 3,
                     borderColor: "white",
                   },
                 ]}
               >
                 <MaterialCommunityIcons name="share" size={30} color="white" />
               </TouchableOpacity>
-
-              {/* <TouchableOptacity onPress={() => {}}>
-                <Text>Save Wallpaper</Text>
-              </TouchableOptacity>
-              <TouchableOptacity onPress={() => {}}>
-                <Text>Save Wallpaper</Text>
-              </TouchableOptacity> */}
-
-              {/* <Button title="Download" onPress={handleOpenWallpaperDialog} />
-              <Button
-                title="Save Wallpaper"
-                onPress={handleOpenWallpaperDialog}
-              />
-              <Button title="Share" onPress={handleOpenWallpaperDialog} /> */}
             </View>
           </BottomSheetModal>
 
@@ -200,7 +208,6 @@ const Details = () => {
             ref={wallpaperRef}
             snapPoints={wallpaperPoints}
             index={0}
-            onChange={handleSheetChanges}
             enablePanDownToClose={true}
             backgroundComponent={() => (
               <View style={[styles.contentContainer]} />

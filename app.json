@@ -36,5 +36,15 @@
   },
   "react-native-google-mobile-ads": {
     "android_app_id": "ca-app-pub-9053239820097034~7846876483"
-  }
+  },
+  "plugins": [
+    [
+      "expo-media-library",
+      {
+        "photosPermission": "Allow New Wallpapers to access your photos.",
+        "savePhotosPermission": "Allow New Wallpapers to save photos.",
+        "isAccessMediaLocationEnabled": true
+      }
+    ]
+  ]
 }

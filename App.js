@@ -5,6 +5,7 @@ import WallpaperNavigation from "./src/navigations/WallpaperNavigation";
 import { COLORS } from "./src/constants/index";
 import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Toast from "react-native-toast-message";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           />
           <WallpaperNavigation />
         </NavigationContainer>
+        <Toast />
       </GestureHandlerRootView>
     </>
   );
