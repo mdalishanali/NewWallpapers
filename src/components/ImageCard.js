@@ -23,9 +23,8 @@ const ImageCard = ({ item }) => {
   return (
     <View
       style={{
-        height: height / 2 - 10,
-        width: width / 2 - 18,
-        backgroundColor: COLORS.primary,
+        // height: height /c 2 - 10,
+        // width: w               olor: COLORS.primary,
         borderColor: "white",
         borderRadius: 5,
         paddingBottom: 2,

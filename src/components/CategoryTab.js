@@ -1,8 +1,10 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 import * as React from "react";
 import { View, useWindowDimensions, Text, StyleSheet } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
+import { COLORS } from "../constants";
 import WallpaperList from "./WallpaperList";
 
 const FirstRoute = ({ foo }) => {
@@ -53,17 +55,19 @@ export default function CategoryTab() {
   // };
 
   const renderTabBar = (props) => (
-    <TabBar
-      {...props}
-      activeColor={"white"}
-      inactiveColor={"grey"}
-      // renderIcon={(props) => getTabBarIcon(props)}
-      style={{ marginTop: -10, backgroundColor: "transparent" }}
-      indicatorStyle={{ backgroundColor: "white" }}
-      tabStyle={styles.bubble}
-      labelStyle={styles.noLabel}
-      scrollEnabled={true}
-    />
+    <>
+      <TabBar
+        {...props}
+        activeColor={"white"}
+        inactiveColor={"grey"}
+        // renderIcon={(props) => getTabBarIcon(props)}
+        style={{ marginTop: -10, backgroundColor: "transparent" }}
+        indicatorStyle={{ backgroundColor: "white" }}
+        tabStyle={styles.bubble}
+        labelStyle={styles.noLabel}
+        scrollEnabled={true}
+      />
+    </>
   );
   return (
     <TabView

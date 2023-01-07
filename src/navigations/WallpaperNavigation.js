@@ -35,6 +35,7 @@ function WallpaperNavigation() {
         component={Details}
         options={({ route }) => ({
           title: "",
+          headerShown: false,
         })}
       />
     </Stack.Navigator>

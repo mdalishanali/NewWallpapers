@@ -10,6 +10,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import ImageCard from "./ImageCard";
+import MasonryList from "@react-native-seoul/masonry-list";
 
 const WallpaperList = ({ foo }) => {
   const navigation = useNavigation();
@@ -92,19 +93,21 @@ const WallpaperList = ({ foo }) => {
   return (
     <View style={styles.container}>
       <FlatList
+        data={data}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+        showsVerticalScrollIndicator={false}
+        style={{ alignSelf: "stretch" }}
         contentContainerStyle={{
           flexDirection: "column",
           maxWidth: "100%",
           justifyContent: "space-between",
         }}
-        data={data}
-        numColumns={2}
         initialNumToRender={5}
         onEndReached={fetchMore}
         renderItem={({ item, index }) => {
           return <ImageCard key={index} item={item} />;
         }}
-        keyExtractor={(item) => item.id}
       />
     </View>
   );
