@@ -7,13 +7,13 @@ import {
   Text,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import ImageCard from "../components/ImageCard";
-import CategoryTab from "../components/CategoryTab";
+import ImageCard from "./ImageCard";
 
-const Home = () => {
+const WallpaperList = ({ foo }) => {
   const navigation = useNavigation();
+  useEffect(() => {}, [foo]);
   const navigateToDetails = () => {
     navigation.navigate("Details");
   };
@@ -89,21 +89,27 @@ const Home = () => {
   const fetchMore = () => {
     // setData([...data, imgData]);
   };
-  return <CategoryTab />;
+  return (
+    <View style={styles.container}>
+      <FlatList
+        contentContainerStyle={{
+          flexDirection: "column",
+          maxWidth: "100%",
+          justifyContent: "space-between",
+        }}
+        data={data}
+        numColumns={2}
+        initialNumToRender={5}
+        onEndReached={fetchMore}
+        renderItem={({ item, index }) => {
+          return <ImageCard key={index} item={item} />;
+        }}
+        keyExtractor={(item) => item.id}
+      />
+    </View>
+  );
 };
 
-export default Home;
+export default WallpaperList;
 
-const styles = StyleSheet.create({
-  container: {
-    // width: "100%",
-  },
-  list: {
-    // display: "flex",
-    // flexDirection: "row",
-    // width: { width },
-    // display: "flex",
-    // flexWrap: "wrap",
-    // padding: 10,
-  },
-});
+const styles = StyleSheet.create({});

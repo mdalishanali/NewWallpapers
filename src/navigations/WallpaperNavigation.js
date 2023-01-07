@@ -26,8 +26,8 @@ function WallpaperNavigation() {
         name="Home"
         component={Home}
         options={({ route }) => ({
-          headerBackTitleVisible: true,
-          title: "New Wallpapers",
+          title: "New Wallpaper",
+          // headerShown: false,
         })}
       />
       <Stack.Screen
