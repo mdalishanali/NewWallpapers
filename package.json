@@ -12,7 +12,6 @@
     "@ajaybhatia/react-native-wallpaper-manager": "^0.0.3",
     "@expo/vector-icons": "^13.0.0",
     "@gorhom/bottom-sheet": "^4",
-    "@react-native-seoul/masonry-list": "^1.4.1",
     "@react-navigation/native": "^6.1.1",
     "@react-navigation/native-stack": "^6.9.7",
     "expo": "~47.0.9",
