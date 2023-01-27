@@ -35,7 +35,45 @@ import {
 } from "@expo/vector-icons";
 import Toast from "react-native-toast-message";
 
+// ads
+import {
+  RewardedAd,
+  RewardedAdEventType,
+  TestIds,
+} from "react-native-google-mobile-ads";
+
+const adUnitId = __DEV__
+  ? TestIds.REWARDED
+  : "ca-app-pub-9053239820097034/4650297079";
+
+const rewarded = RewardedAd.createForAdRequest(adUnitId, {
+  requestNonPersonalizedAdsOnly: true,
+  keywords: ["fashion", "clothing"],
+});
+// ads
 const Details = () => {
+  const [adLoaded, setAdLoaded] = useState(false);
+
+  useEffect(() => {
+    const unsubscribeLoaded = rewarded.addAdEventListener(
+      RewardedAdEventType.LOADED,
+      () => {
+        setAdLoaded(true);
+        rewarded.show();
+      }
+    );
+    const unsubscribeEarned = rewarded.addAdEventListener(
+      RewardedAdEventType.EARNED_REWARD,
+      (reward) => {}
+    );
+    rewarded.load();
+    // Unsubscribe from events on unmount
+    return () => {
+      unsubscribeLoaded();
+      unsubscribeEarned();
+    };
+  }, []);
+
   const sheetRef = useRef(null);
   const wallpaperRef = useRef(null);
 
@@ -94,7 +132,6 @@ const Details = () => {
   const handleOpenWallpaperDialog = useCallback((index) => {
     wallpaperRef.current?.present();
   }, []);
-
 
   return (
     <View>
