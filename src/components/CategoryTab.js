@@ -5,6 +5,11 @@ import * as React from "react";
 import { View, useWindowDimensions, Text, StyleSheet } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import { COLORS } from "../constants";
+import AbstractTab from "../tabs/AbstractTab";
+import BeachTab from "../tabs/BeachTab";
+import NatureTab from "../tabs/NatureTab";
+import SkyTab from "../tabs/SkyTab";
+import TrendingTab from "../tabs/TrendingTab";
 import WallpaperList from "./WallpaperList";
 
 const FirstRoute = ({ foo }) => {
@@ -21,10 +26,11 @@ const SecondRoute = () => (
 );
 
 const renderScene = SceneMap({
-  first: () => <WallpaperList foo={"first"} />,
-  second: () => <FirstRoute foo={"second"} />,
-  third: () => <WallpaperList foo={"third"} />,
-  four: () => <FirstRoute foo={"thired"} />,
+  first: () => <TrendingTab />,
+  second: () => <SkyTab />,
+  third: () => <NatureTab />,
+  four: () => <BeachTab />,
+  five: () => <AbstractTab />,
 });
 
 export default function CategoryTab() {
@@ -33,26 +39,12 @@ export default function CategoryTab() {
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: "first", title: "New" },
-    { key: "second", title: "Trending" },
+    { key: "first", title: "Trending" },
+    { key: "second", title: "Sky" },
     { key: "third", title: "Nature" },
-    { key: "four", title: "Marvel" },
+    { key: "four", title: "Beach" },
+    { key: "five", title: "Abstract" },
   ]);
-
-  // const getTabBarIcon = (props) => {
-  //   const { route, focused, color } = props;
-  //   if (route.key === "Search") {
-  //     return <Icon name="search" size={30} color={focused ? "red" : color} />;
-  //   } else {
-  //     return (
-  //       <FontAwesome
-  //         name="twitter"
-  //         size={30}
-  //         color={focused ? "white" : color}
-  //       />
-  //     );
-  //   }
-  // };
 
   const renderTabBar = (props) => (
     <>
@@ -60,7 +52,6 @@ export default function CategoryTab() {
         {...props}
         activeColor={"white"}
         inactiveColor={"grey"}
-        // renderIcon={(props) => getTabBarIcon(props)}
         style={{ marginTop: -10, backgroundColor: "transparent" }}
         indicatorStyle={{ backgroundColor: "white" }}
         tabStyle={styles.bubble}

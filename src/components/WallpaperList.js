@@ -10,11 +10,26 @@ import {
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import ImageCard from "./ImageCard";
-import MasonryList from "@react-native-seoul/masonry-list";
+// import { Axios } from "../../Axios";
 
 const WallpaperList = ({ foo }) => {
   const navigation = useNavigation();
-  useEffect(() => {}, [foo]);
+
+  const getImages = async () => {
+    const url =
+      "https://api.pexels.com/v1/curated/?page=1&per_page=20&orientation=portrait&size=large";
+    const { data } = await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: API_KEY,
+      },
+    });
+    console.log("Data", data);
+  };
+
+  useEffect(() => {
+    getImages();
+  }, []);
   const navigateToDetails = () => {
     navigation.navigate("Details");
   };

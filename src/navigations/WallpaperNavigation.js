@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-// local import
-import { Home, Details } from "../screens/index";
+import { Details } from "../screens/index";
 import { COLORS } from "../constants/index";
+import CategoryTab from "../components/CategoryTab";
+
 const Stack = createNativeStackNavigator();
+
 function WallpaperNavigation() {
   return (
     <Stack.Navigator
@@ -19,15 +20,13 @@ function WallpaperNavigation() {
           backgroundColor: COLORS.header,
         },
       }}
-      initialRouteName="Home"
-      style={styles.container}
+      initialRouteName="CategoryTab"
     >
       <Stack.Screen
-        name="Home"
-        component={Home}
+        name="CategoryTab"
+        component={CategoryTab}
         options={({ route }) => ({
           title: "New Wallpaper",
-          // headerShown: false,
         })}
       />
       <Stack.Screen
@@ -43,9 +42,3 @@ function WallpaperNavigation() {
 }
 
 export default WallpaperNavigation;
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "red",
-  },
-});

@@ -48,7 +48,7 @@ const Details = () => {
 
   const route = useRoute();
   const item = route.params.item;
-  const { img, id } = item;
+  const { src, id } = item;
 
   const setWallpaper = (screen) => {
     setProgress(true);
@@ -56,7 +56,7 @@ const Details = () => {
     try {
       WallPaperManager.setWallpaper(
         {
-          uri: img,
+          uri: src.portrait || src.original,
           screen: screen,
         },
         (res) => {
@@ -95,13 +95,14 @@ const Details = () => {
     wallpaperRef.current?.present();
   }, []);
 
+
   return (
     <View>
       <BottomSheetModalProvider>
         <View>
           {loading ? <ActivityIndicator /> : null}
           <ExpoFastImage
-            uri={img}
+            uri={src.portrait || src.original}
             cacheKey={id}
             style={{
               width: width,
@@ -142,7 +143,7 @@ const Details = () => {
               }}
             >
               <TouchableOpacity
-                onPress={() => {}}
+                onPress={handleOpenWallpaperDialog}
                 style={[
                   styles.btnContainer,
                   {
